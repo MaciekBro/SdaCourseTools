@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SdaCourseTools</string>
+    <string name="open">OPEN</string>
+    <string name="close">CLOSE</string>
+    <string name="wyczy_widok">Wyczyść widok</string>
+    <string name="clear_view">Wyczyść widok </string>
 </resources>
