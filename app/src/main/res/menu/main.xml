@@ -4,8 +4,7 @@
     <item
         android:id="@+id/clear"
         android:title="Clear"
-        android:showAsAction="never"
-        ></item>
+        android:showAsAction="never" />
 
 
 </menu>
