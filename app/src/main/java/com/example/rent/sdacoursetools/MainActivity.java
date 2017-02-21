@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rent.sdacoursetools.drawingApplication.DrawingMainActivity;
+import com.example.rent.sdacoursetools.reflexGame.ReflexMainActivity;
 
 import org.w3c.dom.Text;
 
@@ -37,12 +38,21 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
 
-        TextView textView = (TextView) findViewById(R.id.drawing_app);
-        textView.setOnClickListener(new View.OnClickListener() {
+        TextView drawingTextView = (TextView) findViewById(R.id.drawing_app);
+        drawingTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DrawingMainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        TextView reflexTextView = (TextView) findViewById(R.id.reflex_game);
+        reflexTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(v.getContext(), ReflexMainActivity.class);
+                startActivity(intent2);
             }
         });
 
@@ -65,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.openDrawer(Gravity.START);
                 }
 
+
 //                Toast.makeText(DrawingMainActivity.this, "Wygrałeś milion złoty!", Toast.LENGTH_SHORT).show();
 //                onBackPressed();   //dziala dokladnie jak defoultowa strzałka wstecz
                 break;
             }
+
         }
         return super.onOptionsItemSelected(item);
     }
