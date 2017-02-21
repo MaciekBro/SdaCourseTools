@@ -38,6 +38,7 @@ public class ReflexMainActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reflex_activity_main);
+//        getSupportActionBar().setTitle("Reflexuj szybko!");
 
         imageViewLeft = (ImageView) findViewById(R.id.image_view_left);
         imageViewRight = (ImageView) findViewById(R.id.image_view_right);

@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
-
+    <item
+        android:id="@+id/remove_image"
+        android:title="Usuń zdjęcie"
+        android:icon="@drawable/delete_icon"
+        app:showAsAction="always"/>
 
 </menu>

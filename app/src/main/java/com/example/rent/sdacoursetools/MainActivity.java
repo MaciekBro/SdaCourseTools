@@ -75,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.openDrawer(Gravity.START);
                 }
 
+
 //                Toast.makeText(DrawingMainActivity.this, "Wygrałeś milion złoty!", Toast.LENGTH_SHORT).show();
 //                onBackPressed();   //dziala dokladnie jak defoultowa strzałka wstecz
                 break;
             }
+
         }
         return super.onOptionsItemSelected(item);
     }
