@@ -37,7 +37,7 @@ public class ReflexMainActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.reflex_activity_main);
 
         imageViewLeft = (ImageView) findViewById(R.id.image_view_left);
         imageViewRight = (ImageView) findViewById(R.id.image_view_right);
