@@ -7,8 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/activity_main"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -18,10 +19,25 @@
         tools:context="com.example.rent.sdacoursetools.MainActivity">
 
         <TextView
+            android:text="My Notes"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/my_note_edittext"
+            android:inputType="textMultiLine"
+            android:lines="9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/save_note"
+            android:text="Save Note"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
-    </RelativeLayout>
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="300dp"
@@ -60,8 +76,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/flag"
-            android:text="Flaga"
+            android:id="@+id/todo_list"
+            android:text="TODO List"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -72,8 +88,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/galery"
-            android:text="Galeria"
+            android:id="@+id/kolkokrzyzyk_textview"
+            android:text="Kółko i krzyżyk"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
