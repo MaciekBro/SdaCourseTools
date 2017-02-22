@@ -17,4 +17,7 @@ public class KolkoIKrzyzykActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kolokrzyzyk_activity_main);
     }
+
+
+
 }

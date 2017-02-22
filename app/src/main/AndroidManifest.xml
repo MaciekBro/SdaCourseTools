@@ -36,6 +36,10 @@
             android:label="TODO List">
 
         </activity>
+        <activity android:name=".KolkoIKrzyzyk.KolkoIKrzyzykActivity"
+            android:label="Kółko i Krzyżyk">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
