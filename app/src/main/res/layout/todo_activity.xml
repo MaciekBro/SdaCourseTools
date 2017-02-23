@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
+
         android:id="@+id/recycler_view"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
+
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,10 +23,11 @@
         >
 
         <EditText
+            android:background="@android:color/darker_gray"
             android:id="@+id/todo_edit_text"
             android:layout_weight="0.7"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="35dp" />
 
         <Button
             android:id="@+id/todo_add_button"
