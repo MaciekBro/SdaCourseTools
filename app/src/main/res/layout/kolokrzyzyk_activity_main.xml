@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
     <GridLayout
+        android:id="@+id/grid_layout"
         android:background="@drawable/tab_3x3"
         android:rowCount="3"
         android:columnCount="3"
@@ -16,9 +20,21 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="0"
+             />
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:onClick="iconShow"
+            android:tag="1"
              />
 
         <ImageView
@@ -26,23 +42,18 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="2"
              />
 
         <ImageView
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="13dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
-             />
-
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="3"
             />
 
         <ImageView
@@ -50,7 +61,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="4"
              />
 
         <ImageView
@@ -58,7 +70,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="5"
              />
 
         <ImageView
@@ -66,7 +79,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="6"
              />
 
         <ImageView
@@ -74,7 +88,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="7"
              />
 
         <ImageView
@@ -82,8 +97,40 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/one"
+            android:onClick="iconShow"
+            android:tag="8"
              />
 
     </GridLayout>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/winning_textview"
+            android:gravity="center"
+            android:text="wygralem!"
+
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/winning_textview"
+            android:id="@+id/play_again_button"
+            android:onClick="startAgain"
+            android:text="Play again"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>
