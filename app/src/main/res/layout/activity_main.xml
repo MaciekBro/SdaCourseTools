@@ -100,8 +100,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/url_open"
-            android:text="Otwórz strone w przeglądarce"
+            android:id="@+id/milion_textView"
+            android:text="Żulionerzy"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -53,7 +53,7 @@ public class KolkoIKrzyzykActivity extends AppCompatActivity {
                 System.out.println(gameStatus);
             }
 
-            imageView.animate().translationYBy(1000f).setDuration(1000);
+            imageView.animate().translationYBy(1000f).setDuration(300);
         }}
 
         TextView winningText = (TextView) findViewById(R.id.winning_textview);

@@ -19,9 +19,17 @@ import java.util.List;
 
 public class TODOListAdapter extends RecyclerView.Adapter<TODOListAdapter.MyViewHolder> {
 
-    private List<TODOListItem> items = new ArrayList<>();
+    private List<TODOListItem> items = new ArrayList<>();   //ten typ danych musi byc parcelizowany zeby podczas obrotu go nie tracic
     private OnItemCheckStateChanged checkedListener;
 
+    public List<TODOListItem> getItems() {      //do parcealizacji
+        return items;
+    }
+
+    public void setItems(List<TODOListItem> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
 
     public void setCheckedListener(OnItemCheckStateChanged checkedListener) {
         this.checkedListener = checkedListener;
@@ -38,9 +46,10 @@ public class TODOListAdapter extends RecyclerView.Adapter<TODOListAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         final TODOListItem listItem = items.get(position);
-
-        holder.textView.setText(listItem.getText());
         holder.checkBox.setChecked(listItem.isChecked());         //bo recycler uzywa kilka razy widokow zeby zaoszczedzic...
+        holder.checkBox.setOnCheckedChangeListener(null);       //zeby recyclerView nie kasowalo zaznaczen
+        holder.textView.setText(listItem.getText());
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -50,10 +59,9 @@ public class TODOListAdapter extends RecyclerView.Adapter<TODOListAdapter.MyView
                 }
             }
         });
-
     }
 
-    private int getCheckedItemsCount(){
+    public int getCheckedItemsCount(){
         int count = 0;
         for (TODOListItem item : items){
             if (item.isChecked()) {
@@ -105,4 +113,10 @@ public class TODOListAdapter extends RecyclerView.Adapter<TODOListAdapter.MyView
         }
     }
 
+    public void deselectAllItems() {
+        for (TODOListItem item :items) {
+            item.setChecked(false);
+        }
+        notifyDataSetChanged();
+    }
 }

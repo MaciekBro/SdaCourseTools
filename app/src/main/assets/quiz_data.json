@@ -1,0 +1,27 @@
+{
+  "questionsCount":1,
+  "questions": [
+    {
+      "id": 1,
+      "text": "Głównym komponentem aplikacji androidowej nie jest",
+      "answers": [
+        {
+          "isCorrect": true,
+          "text": "Android Manifest"
+        },
+        {
+          "isCorrect": false,
+          "text": "Aktywność"
+        },
+        {
+          "isCorrect": false,
+          "text": "BroadcastReceiver"
+        },
+        {
+          "isCorrect": false,
+          "text": "Service"
+        }
+      ]
+    }
+  ]
+}

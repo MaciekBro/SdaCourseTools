@@ -3,8 +3,6 @@ package com.example.rent.sdacoursetools;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.PersistableBundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rent.sdacoursetools.KolkoIKrzyzyk.KolkoIKrzyzykActivity;
+import com.example.rent.sdacoursetools.Quiz.QuizActivity;
 import com.example.rent.sdacoursetools.TODOActivity.TODOActivity;
 import com.example.rent.sdacoursetools.drawingApplication.DrawingMainActivity;
 import com.example.rent.sdacoursetools.reflexGame.ReflexMainActivity;
@@ -27,8 +26,6 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, KolkoIKrzyzykActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        TextView milionTextView = (TextView) findViewById(R.id.milion_textView);
+        milionTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                startActivity(intent);
+
             }
         });
 
