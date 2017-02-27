@@ -2,6 +2,12 @@
     <string name="app_name">SdaCourseTools</string>
     <string name="open">OPEN</string>
     <string name="close">CLOSE</string>
-    <string name="wyczy_widok">Wyczyść widok</string>
-    <string name="clear_view">Wyczyść widok </string>
+    <string name="wyczy_widok">Clear view</string>
+    <string name="clear_view">Clear view </string>
+    <string name="checked_items">%d items</string>
+
+    <plurals name="checked_items_plural">
+        <item quantity="one">%d item</item>
+        <item quantity="other">%d items</item>
+    </plurals>
 </resources>
