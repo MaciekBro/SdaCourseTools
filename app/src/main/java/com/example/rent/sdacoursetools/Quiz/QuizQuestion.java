@@ -23,4 +23,5 @@ public class QuizQuestion {
     public List<SingleAnswer> getAnswers() {
         return answers;
     }
+
 }
