@@ -101,7 +101,7 @@
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
             android:id="@+id/milion_textView"
-            android:text="Żulionerzy"
+            android:text="Milionerzy"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -112,8 +112,8 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/battery"
-            android:text="Apka z podlaczaniem Baterii"
+            android:id="@+id/toRead"
+            android:text="Must read! (TabLayout)"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.rent.sdacoursetools.KolkoIKrzyzyk.KolkoIKrzyzykActivity;
 import com.example.rent.sdacoursetools.Quiz.QuizActivity;
 import com.example.rent.sdacoursetools.TODOActivity.TODOActivity;
+import com.example.rent.sdacoursetools.ToReadApp.ToReadActivity;
 import com.example.rent.sdacoursetools.drawingApplication.DrawingMainActivity;
 import com.example.rent.sdacoursetools.reflexGame.ReflexMainActivity;
 import com.google.android.gms.appindexing.Action;
@@ -110,6 +111,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        TextView toRead = (TextView) findViewById(R.id.toRead);
+        toRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ToReadActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
