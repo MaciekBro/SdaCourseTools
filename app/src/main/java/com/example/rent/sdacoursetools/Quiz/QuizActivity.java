@@ -40,10 +40,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private SingleAnswer thirdAnswer;
     private SingleAnswer fourthAnswer;
     private QuizQuestion quizQuestion;
+    private boolean isAnimationCancel; //bedziemy recznie anulowac animacje flaga
 
     private static final String INDEX_KEY = "index_key";
     private int currentQuestionIndex;
     private QuizContainer quizContainer;
+    private ValueAnimator valueAnimator;
+
+    public static final String CORRECT_ANSWERS = "correct answers";
+    public static final String INCORRECT_ANSWERS = "incorrect answers";
+    private int correctAnswers;
+    private int incorrectanswers;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +61,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        ValueAnimator valueAnimator = ObjectAnimator.ofInt(0, 100);
+        valueAnimator = ObjectAnimator.ofInt(0, 100);
         valueAnimator.setDuration(12000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -67,9 +74,15 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
 
-                Intent intent = new Intent(QuizActivity.this, QuizActivity.class);
-                intent.putExtra(INDEX_KEY, ++currentQuestionIndex);
-                startActivity(intent);
+                if (!isAnimationCancel) {
+//                    Toast.makeText(QuizActivity.this, "KOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONIEC", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(QuizActivity.this, QuizActivity.class);
+//                    intent.putExtra(INDEX_KEY, ++currentQuestionIndex);
+//                    startActivity(intent);
+                    Intent intent = new Intent(QuizActivity.this, QuizSummary.class);
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -113,6 +126,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         playMusic("https://static.mezgrman.de/downloads/wwm/wechsel_nach_stufe_3.mp3"); //na początku pytania
 
+        correctAnswers = getIntent().getIntExtra(CORRECT_ANSWERS,0);
+        incorrectanswers = getIntent().getIntExtra(INCORRECT_ANSWERS,0);
+
+
     }
 
     String url;
@@ -140,9 +157,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if ((Boolean) v.getTag()) {
                 Toast.makeText(this, "Odpowiedź poprawna!", Toast.LENGTH_SHORT).show();
                 playMusic("https://static.mezgrman.de/downloads/wwm/richtig_stufe_1.mp3"); //correct answer
+                ++correctAnswers;
             } else {
                 Toast.makeText(this, "Niestety....zjebałeś", Toast.LENGTH_SHORT).show();
                 playMusic("https://static.mezgrman.de/downloads/wwm/falsch.mp3"); //wrong answer
+                ++incorrectanswers;
             }
 
             v.postDelayed(new Runnable() {
@@ -152,14 +171,23 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     if (currentQuestionIndex < quizContainer.getQuestionsCount() - 1) {
                         Intent intent = new Intent(QuizActivity.this, QuizActivity.class);
                         intent.putExtra(INDEX_KEY, ++currentQuestionIndex);
+                        intent.putExtra(CORRECT_ANSWERS, correctAnswers);
+                        intent.putExtra(INCORRECT_ANSWERS,incorrectanswers);
                         startActivity(intent);
                     } else {
-                        Intent intent = new Intent(QuizActivity.this, QuizActivity.class);
-                        intent.putExtra(INDEX_KEY, 0);
+//                        Intent intent = new Intent(QuizActivity.this, QuizActivity.class);
+//                        intent.putExtra(INDEX_KEY, 0);
+//                        startActivity(intent);
+                        Intent intent = new Intent(QuizActivity.this, QuizSummary.class);
+                        intent.putExtra(CORRECT_ANSWERS, correctAnswers);
+                        intent.putExtra(INCORRECT_ANSWERS,incorrectanswers);
                         startActivity(intent);
+//                        Toast.makeText(QuizActivity.this, "Quiz ends", Toast.LENGTH_SHORT).show();
 
 
                     }
+                    isAnimationCancel = true;
+                    valueAnimator.cancel();
                 }
 
             }, 3000);
