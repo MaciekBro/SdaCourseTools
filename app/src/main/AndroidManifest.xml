@@ -52,6 +52,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".Quiz.QuizSummary"></activity>
+        <activity android:name=".mvp.MvpActivity"
+            android:exported="true"
+            android:label="MVP Presenter"></activity>
     </application>
 
 </manifest>
