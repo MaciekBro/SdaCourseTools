@@ -52,6 +52,8 @@ public class TODOActivity extends AppCompatActivity implements OnItemCheckStateC
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -65,6 +67,10 @@ public class TODOActivity extends AppCompatActivity implements OnItemCheckStateC
         if (item.getItemId() == R.id.action_delete) {
             todoListAdapter.deleteAllCheckItems();
         }
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -134,4 +140,6 @@ public class TODOActivity extends AppCompatActivity implements OnItemCheckStateC
         onItemCheckStateChanged(todoListAdapter.getCheckedItemsCount());
 
     }
+
+
 }

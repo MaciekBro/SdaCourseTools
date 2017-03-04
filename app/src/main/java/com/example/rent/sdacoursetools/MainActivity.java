@@ -28,6 +28,8 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.example.rent.sdacoursetools.FortuneApp.FortuneActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOTE_KEY = "note_key";
@@ -117,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ToReadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView fortuneTextView = (TextView) findViewById(R.id.fortune_text_view);
+        fortuneTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FortuneActivity.class);
                 startActivity(intent);
             }
         });
