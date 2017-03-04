@@ -22,6 +22,7 @@ import com.example.rent.sdacoursetools.Quiz.QuizActivity;
 import com.example.rent.sdacoursetools.TODOActivity.TODOActivity;
 import com.example.rent.sdacoursetools.ToReadApp.ToReadActivity;
 import com.example.rent.sdacoursetools.drawingApplication.DrawingMainActivity;
+import com.example.rent.sdacoursetools.mvp.MvpActivity;
 import com.example.rent.sdacoursetools.reflexGame.ReflexMainActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -128,6 +129,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FortuneActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView presenterTextView = (TextView) findViewById(R.id.presenter_text_view);
+        presenterTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, MvpActivity.class);
                 startActivity(intent);
             }
         });
