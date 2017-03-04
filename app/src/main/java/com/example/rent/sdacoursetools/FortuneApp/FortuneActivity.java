@@ -49,7 +49,7 @@ public class FortuneActivity extends AppCompatActivity implements ShakeDetector.
             private Animator showAnimationTouch;
             Random randomT =  new Random();
             String[] omensT = {"Grzesiek sika na siedząco", "Bartek żartuje z poważnych tematów", "Grzesiek jeździ na wakacje do Sosnowca", "Bartek lubi spędzać czas wolny w Radomiu", "Grzesiek nie czyta książek", "Bartek je mięso w piątki"};
-            int randomOmensT = randomT.nextInt(omensT.length);
+
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -58,12 +58,13 @@ public class FortuneActivity extends AppCompatActivity implements ShakeDetector.
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    int randomColor = Color.argb(255, randomT.nextInt(255), randomT.nextInt(255), randomT.nextInt(255));
+                    int randomOmensT = randomT.nextInt(omensT.length);
                     if (layer.getVisibility() == View.INVISIBLE) {
                         showAnimationTouch = ViewAnimationUtils
                                 .createCircularReveal(layer, (int) event.getX(), (int) event.getY(), 0, layer.getHeight() + 200);
-
-
                         fortuneTextView.setText(omensT[randomOmensT]);
+                        fortuneTextView.setBackgroundColor(randomColor);
                         layer.setVisibility(View.VISIBLE);
                         showAnimationTouch.start();
                     } else {
@@ -137,7 +138,7 @@ public class FortuneActivity extends AppCompatActivity implements ShakeDetector.
         int x = random.nextInt(getResources().getDisplayMetrics().widthPixels);
         int y = random.nextInt(getResources().getDisplayMetrics().heightPixels);
 
-        String[] omens = {"Grzesiek sika na siedząco", "Bartek żartuje z poważnych tematów", "Grzesiek jeździ na wakacje do Sosnowca", "Bartek lubi spędzać czas wolny w Radomiu", "Grzesiek nie czyta książek", "Bartek je mięso w piątki"};
+        String[] omens = {"Dlaczego?!?!?!!!?!??!!?!?!","Grzesiek sika na siedząco", "Bartek żartuje z poważnych tematów", "Grzesiek jeździ na wakacje do Sosnowca", "Bartek lubi spędzać czas wolny w Radomiu", "Grzesiek nie czyta książek", "Bartek je mięso w piątki"};
         int randomOmens = random.nextInt(omens.length);
 
 //        int[] colors = {R.color.colorAccent};

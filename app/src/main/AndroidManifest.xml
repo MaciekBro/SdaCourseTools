@@ -37,7 +37,8 @@
             android:label="Kółko i Krzyżyk"></activity>
         <activity
             android:name=".Quiz.QuizActivity"
-            android:label="Żulionerzy"></activity>
+            android:label="Żulionerzy"
+            ></activity>
         <activity
             android:name=".ToReadApp.ToReadActivity"
             android:label="MUST READ!" />

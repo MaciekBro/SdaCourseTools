@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rent.sdacoursetools.MainActivity;
 import com.example.rent.sdacoursetools.R;
 import com.google.gson.Gson;
 
@@ -23,7 +23,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by RENT on 2017-02-25.
@@ -45,7 +44,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private static final String INDEX_KEY = "index_key";
     private int currentQuestionIndex;
     private QuizContainer quizContainer;
-    private ValueAnimator valueAnimator;
+    private ValueAnimator objectAnimator;
 
     public static final String CORRECT_ANSWERS = "correct answers";
     public static final String INCORRECT_ANSWERS = "incorrect answers";
@@ -61,15 +60,15 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        valueAnimator = ObjectAnimator.ofInt(0, 100);
-        valueAnimator.setDuration(12000);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        objectAnimator = ObjectAnimator.ofInt(0, 100);
+        objectAnimator.setDuration(12000);
+        objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 progressBar.setProgress((Integer) animation.getAnimatedValue());
             }
         });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
@@ -86,7 +85,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        valueAnimator.start();
+        objectAnimator.start();
 
 //        ObjectAnimator.ofInt(progressBar, "progres",0,100);
 
@@ -187,10 +186,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                     isAnimationCancel = true;
-                    valueAnimator.cancel();
+
                 }
 
             }, 3000);
+            objectAnimator.removeAllUpdateListeners(); //aby pasek nie szedl dalej
             wasViewedClicked = true;
         }
 
@@ -199,6 +199,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 //        mediaPlayer.start();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent (QuizActivity.this, MainActivity.class);
+        
+        startActivity(intent);
     }
 
     private String loadQuizJason() {
