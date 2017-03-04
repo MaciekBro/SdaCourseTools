@@ -61,8 +61,10 @@ public class FortuneActivity extends AppCompatActivity implements ShakeDetector.
                     if (layer.getVisibility() == View.INVISIBLE) {
                         showAnimationTouch = ViewAnimationUtils
                                 .createCircularReveal(layer, (int) event.getX(), (int) event.getY(), 0, layer.getHeight() + 200);
-                        layer.setVisibility(View.VISIBLE);
+
+
                         fortuneTextView.setText(omensT[randomOmensT]);
+                        layer.setVisibility(View.VISIBLE);
                         showAnimationTouch.start();
                     } else {
                         hideAnimationTouch = ViewAnimationUtils
