@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.example.rent.sdacoursetools.MainActivity;
 import com.example.rent.sdacoursetools.R;
@@ -23,6 +25,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by RENT on 2017-02-25.
@@ -56,12 +60,15 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity_main);
 
+
+        ViewSwitcher viewSwitcher = (ViewSwitcher) findViewById(R.id.view_switcher);
+
         currentQuestionIndex = getIntent().getIntExtra(INDEX_KEY, 0); //cos co nam wystartuje intent to zwroci nam wartosc 0
 
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         objectAnimator = ObjectAnimator.ofInt(0, 100);
-        objectAnimator.setDuration(12000);
+        objectAnimator.setDuration(10000);
         objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -85,7 +92,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        objectAnimator.start();
+//        objectAnimator.start();
 
 //        ObjectAnimator.ofInt(progressBar, "progres",0,100);
 
@@ -96,11 +103,43 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         answer_3_textView = (TextView) findViewById(R.id.third);
         answer_4_textView = (TextView) findViewById(R.id.fourth);
 
-        String json = loadQuizJason();
-        quizContainer = new Gson().fromJson(json, QuizContainer.class);
+        String json = null;
 
+        new AsyncTask<String, Void, QuizContainer>(){           //1. typ parametru ktory mu podamy, 2. widok powiadamiajacy o procencie pobrania, 3. Typ zwrócony.
+
+            @Override
+            protected QuizContainer doInBackground(String... params) {
+                String json = null;
+                try {
+                    json = loadQuizJasonFromURL(params[0]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//                quizContainer = new Gson().fromJson(json, QuizContainer.class);       //tak sie nie robi
+                return new Gson().fromJson(json, QuizContainer.class);
+            }
+
+            @Override
+            protected void onPostExecute(QuizContainer quizContainer) {
+                displayResultOnScreen(quizContainer);
+                viewSwitcher.setDisplayedChild(1);      //bo nasz switcher ma 2 dzieci i chcemy wyswietlic drugi layout
+                objectAnimator.start();
+            }
+        }.execute("https://sdacourse-f546a.firebaseio.com/quiz.json");
+
+        playMusic("https://static.mezgrman.de/downloads/wwm/wechsel_nach_stufe_3.mp3"); //na początku pytania
+
+        correctAnswers = getIntent().getIntExtra(CORRECT_ANSWERS,0);
+        incorrectanswers = getIntent().getIntExtra(INCORRECT_ANSWERS,0);
+
+
+
+    }
+
+    private void displayResultOnScreen(QuizContainer quizContainer) {
+        this.quizContainer=quizContainer;
+        TextView questionTextView = (TextView) findViewById(R.id.question_text_view);
         quizQuestion = quizContainer.getQuestions().get(currentQuestionIndex);
-
         questionTextView.setText(quizQuestion.getQuestion());
 
         firstAnswer = quizQuestion.getAnswers().get(0);
@@ -122,13 +161,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         answer_2_textView.setOnClickListener(this);
         answer_3_textView.setOnClickListener(this);
         answer_4_textView.setOnClickListener(this);
-
-        playMusic("https://static.mezgrman.de/downloads/wwm/wechsel_nach_stufe_3.mp3"); //na początku pytania
-
-        correctAnswers = getIntent().getIntExtra(CORRECT_ANSWERS,0);
-        incorrectanswers = getIntent().getIntExtra(INCORRECT_ANSWERS,0);
-
-
     }
 
     String url;
@@ -204,28 +236,28 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         Intent intent = new Intent (QuizActivity.this, MainActivity.class);
-        
+
         startActivity(intent);
     }
 
-    private String loadQuizJason() {
+    private String loadQuizJasonFromURL(String stringUrl) throws IOException {
+        URL url = new URL(stringUrl);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
         StringBuilder buf = new StringBuilder();
-        InputStream json = null;
-        BufferedReader in = null;
+        InputStream json = httpURLConnection.getInputStream();
+        BufferedReader in = new BufferedReader(new InputStreamReader(json,"UTF-8"));
         String str;
-        try {
-            json = getAssets().open("quiz_data.json");
-            in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
 
-            while ((str = in.readLine()) != null) {
-                buf.append(str);
-            }
-            in.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        while ((str=in.readLine())!=null){
+            buf.append(str);
         }
+
+        in.close();
+
+
+
         return buf.toString();
     }
 

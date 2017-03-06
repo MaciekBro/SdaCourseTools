@@ -1,71 +1,73 @@
 {
-  "questionsCount":3,
-  "questions": [
-    {
-      "id": 1,
-      "question": "Głównym komponentem aplikacji androidowej nie jest.",
-      "answers": [
-        {
-          "isCorrect": true,
-          "text": "Android Manifest"
-        },
-        {
-          "isCorrect": false,
-          "text": "Aktywność"
-        },
-        {
-          "isCorrect": false,
-          "text": "Broadcast Receiver"
-        },
-        {
-          "isCorrect": false,
-          "text": "Service"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "question": "Więcej niż jedno zwierze..",
-      "answers": [
-        {
-          "isCorrect": true,
-          "text": "Stado"
-        },
-        {
-          "isCorrect": false,
-          "text": "Lama"
-        },
-        {
-          "isCorrect": false,
-          "text": "Owca"
-        },
-        {
-          "isCorrect": false,
-          "text": "Kanapka"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "question": "Imie twórcy aplikacji.",
-      "answers": [
-        {
-          "isCorrect": true,
-          "text": "Maciek"
-        },
-        {
-          "isCorrect": false,
-          "text": "Sraciek"
-        },
-        {
-          "isCorrect": false,
-          "text": "Banić"
-        },
-        {
-          "isCorrect": false,
-          "text": "Patałach"
-        }
-      ]
-    }
-  ]
+  "quiz": {
+    "questionsCount": 3,
+    "questions": [
+      {
+        "id": 1,
+        "question": "Głównym komponentem aplikacji androidowej nie jest.",
+        "answers": [
+          {
+            "isCorrect": true,
+            "text": "Android Manifest"
+          },
+          {
+            "isCorrect": false,
+            "text": "Aktywność"
+          },
+          {
+            "isCorrect": false,
+            "text": "BroadcastReceiver"
+          },
+          {
+            "isCorrect": false,
+            "text": "Service"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Więcej niż jedno zwierze..",
+        "answers": [
+          {
+            "isCorrect": true,
+            "text": "Stado"
+          },
+          {
+            "isCorrect": false,
+            "text": "Lama"
+          },
+          {
+            "isCorrect": false,
+            "text": "Owca"
+          },
+          {
+            "isCorrect": false,
+            "text": "Kanapka"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Imie twórcy aplikacji.",
+        "answers": [
+          {
+            "isCorrect": true,
+            "text": "Maciek"
+          },
+          {
+            "isCorrect": false,
+            "text": "Sraciek"
+          },
+          {
+            "isCorrect": false,
+            "text": "Banić"
+          },
+          {
+            "isCorrect": false,
+            "text": "Patałach"
+          }
+        ]
+      }
+    ]
+  }
 }
